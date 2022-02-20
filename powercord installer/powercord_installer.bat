@@ -28,6 +28,12 @@ if '%errorlevel%' NEQ '0' (
     pushd "%CD%"
     CD /D "%~dp0"
 
+echo Cheking if node is installed...
+
+timeout /t 2
+
+cls
+
 REM  --> Install node js or if we have it already skip this
 
 set NULL_VAL=null
@@ -52,9 +58,18 @@ IF "%NODE_VER%"=="%NULL_VAL%" (
 	echo A version of Node.js ^(%NODE_VER%^) is installed. Proceeding...
 )
  
-echo.
 
-REM  --> Install and git or if we have it skip this
+timeout /t 2
+
+cls
+
+echo Cheking if Git is installed...
+
+timeout /t 2
+
+cls
+
+REM  --> Install git or if we have it skip this
 
 if exist "C:\Program Files\Git" (goto installed) else (goto not)
 
@@ -80,11 +95,15 @@ exit
 
 :installed
 
-echo A version of Git is installed. Proceding...
+echo A version of Git is installed. Proceeding...
 
-echo.
+timeout /t 2
+
+cls
 
 echo Are you sure do you want to install powercord (You have all the requirements to install it)
+
+echo.
 
 pause
 
