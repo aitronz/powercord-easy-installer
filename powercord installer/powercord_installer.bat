@@ -81,7 +81,7 @@ echo You don't have installed Git! Install it clicking enter!
 
 echo.
 
-echo When you have it installed open another time this installer!
+echo When you have it installed run another time this installer!
 
 echo.
 
