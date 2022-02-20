@@ -51,10 +51,42 @@ IF "%NODE_VER%"=="%NULL_VAL%" (
 ) ELSE (
 	echo A version of Node.js ^(%NODE_VER%^) is installed. Proceeding...
 )
+ 
+echo.
+
+REM  --> Install and git or if we have it skip this
+
+if exist "C:\Program Files\Git" (goto installed) else (goto not)
+
+:not
+
+cls
+
+echo You don't have installed Git! Install it clicking enter!
 
 echo.
+
+echo When you have it installed open another time this installer!
+
 echo.
+
+pause
+
+start https://git-scm.com/downloads
+
+cls
+
+exit
+
+:installed
+
+echo A version of Git is installed. Proceding...
+
 echo.
+
+echo Are you sure do you want to install powercord (You have all the requirements to install it)
+
+pause
 
 REM  --> Install and activate powercord
 
