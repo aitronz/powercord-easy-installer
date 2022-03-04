@@ -81,7 +81,7 @@ echo You don't have installed Git! Install it clicking enter!
 
 echo.
 
-echo When you have it installed run another time this installer!
+echo When you have it installed open another time this installer!
 
 echo.
 
@@ -109,12 +109,24 @@ pause
 
 REM  --> Install and activate powercord
 
-cd C:\Program Files
+timeout /t 2
+
+cd "C:\Program Files"
+
+if exist "C:\Program Files\powercord" (goto yess) else (goto nope)
+
+:nope
 
 git clone https://github.com/powercord-org/powercord
 
+:yess
+
 cd powercord
 
-npm i
+call npm i
 
-npm run plug
+call npm run plug
+
+pause
+
+exit
