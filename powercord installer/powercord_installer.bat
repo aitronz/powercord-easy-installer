@@ -30,7 +30,7 @@ if '%errorlevel%' NEQ '0' (
 
 echo Cheking if node is installed...
 
-timeout /t 2
+TIMEOUT /T 2 /NOBREAK
 
 cls
 
@@ -59,13 +59,13 @@ IF "%NODE_VER%"=="%NULL_VAL%" (
 )
  
 
-timeout /t 2
+TIMEOUT /T 2 /NOBREAK
 
 cls
 
 echo Cheking if Git is installed...
 
-timeout /t 2
+TIMEOUT /T 2 /NOBREAK
 
 cls
 
@@ -97,7 +97,7 @@ exit
 
 echo A version of Git is installed. Proceeding...
 
-timeout /t 2
+TIMEOUT /T 2 /NOBREAK
 
 cls
 
@@ -109,24 +109,50 @@ pause
 
 REM  --> Install and activate powercord
 
-timeout /t 2
+TIMEOUT /T 2 /NOBREAK
+
+taskkill /F /IM DiscordCanary.exe
+
+cls
 
 cd "C:\Program Files"
 
 if exist "C:\Program Files\powercord" (goto yess) else (goto nope)
 
 :nope
-
 git clone https://github.com/powercord-org/powercord
+goto yess
 
 :yess
-
 cd powercord
-
 call npm i
-
 call npm run plug
+TIMEOUT /T 2 /NOBREAK
+cls
+echo Powercord have been installed!
+echo -
+echo Do you want to start discord?
+echo -
+set /p op=Type yes or no:
+if "%op%"=="Yes" goto yesstart
+if "%op%"=="No" goto nostart
 
+:yesstart
+cls
+cd C:\Users\%USERNAME%\AppData\Local\DiscordCanary
+start Update.exe --processStart DiscordCanary.exe
+echo Powercord started
+echo -
+goto finish
+
+:nostart
+cls
+echo Discord not started
+echo -
+
+:finish
+echo You finished the instalation of powercord now chek my powercord pluglin installer!
 pause
+start https://github.com/aitronssesin/powercord-puglin-installer
 
 exit
